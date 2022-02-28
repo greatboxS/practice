@@ -1,0 +1,54 @@
+8 
+10 789 456 
+36 Z Z 
+10 -123 56 
+10 -3214 -987 
+10 -12345 0
+8 074 1237
+17 GG 1E
+2 1000000000000000000000000000000000000101010100000000000000000000010000000000000100000000000000001 001
+
+
+32 5 
+26 63 36 44 68 42 33 47 31 55 34 29 51 41 27 62 38 64 55 31 34 63 39 42 28 37 28 39 37 63 42 19 
+42 28 39 37 63
+
+
+4
+6 5
+2 32 6 9 10 5
+5 20
+1 4 2 3 15
+5 20
+1 4 5 15 27
+5 16
+1 2 4 8 32
+
+Output:
+Case #1: 3
+Case #2: 3
+Case #3: AMBIGIOUS
+Case #4: IMPOSSIBLE
+1
+abcdddcbadfesafe
+
+"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+
+
+
+
+4
+5 10
+2 3 6 9 5
+5 20
+1 4 2 3 15
+5 20
+1 4 5 15 27
+5 16
+1 2 4 8 32
+
+Output:
+Case #1: 3
+Case #2: 3
+Case #3: AMBIGIOUS
+Case #4: IMPOSSIBLE
