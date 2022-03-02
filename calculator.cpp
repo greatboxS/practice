@@ -4,20 +4,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define ll long long
-
-ll GetNum(int digit, string &s);
-void GetNums(int digit, char nums[], ll &out);
-char GetChar(ll n);
-void OutNum(int digit, ll num);
+#define BUFF_SIZE (110 * 2)
+int GetNum(int digit, char c);
+char GetChar(int n);
+void Calculator(int digit, char *s1, char *s2);
 
 int N;       // the number of test cases
 int B;       // number system
 char S[110]; // first integer
 char D[110]; // second integer
-
-ll S_NUM = 0;
-ll D_NUM = 0;
 
 void InputData()
 {
@@ -32,53 +27,26 @@ int main()
     for (i = 0; i < N; i++)
     {
         InputData(); // input function
-        GetNums(B, S, S_NUM);
-        GetNums(B, D, D_NUM);
-        cout << B << " " << S_NUM << " " << D_NUM << " " << endl;
-        // printf("%d %ld %ld\n", B, S_NUM, D_NUM);
-        OutNum(B,S_NUM * D_NUM);
+        Calculator(B, S, D);
     }
     return 0;
 }
 
-ll GetNum(int digit, string &s)
+int GetNum(int digit, char c)
 {
-    ll result = 0;
-    ll negative = 1;
-    vector<int> vt;
-    for (auto i = s.begin(); i != s.end(); i++)
+    int result = 0;
+    if (c >= 'A' && c <= 'Z')
+        result = 10 + (c - (int)'A');
+    else if (c >= '0' && c <= '9')
     {
-        if (*i >= 'A' && *i <= 'Z')
-            vt.push_back(10 + (*i - (int)'A'));
-        else if (*i >= '0' && *i <= '9')
-        {
-            vt.push_back(*i - '0');
-        }
-        else if (*i == '-')
-            negative = -1;
-        else
-            continue;
+        result = c - '0';
     }
-
-    int index = 0;
-    for (auto i = vt.rbegin(); i != vt.rend(); i++)
-    {
-        if (*i == 0)
-            continue;
-        result += pow(digit, index) * (ll)(*i);
-        index++;
-    }
-
-    return (result * negative);
+    else
+        result = 0;
+    return result;
 }
 
-void GetNums(int digit, char nums[], ll &out)
-{
-    string s = string(nums, nums + 110);
-    out = GetNum(digit, s);
-}
-
-char GetChar(ll n)
+char GetChar(int n)
 {
     if (n >= 10 && n <= 36)
         return (char)((n - 10) + 'A');
@@ -87,14 +55,59 @@ char GetChar(ll n)
     else
         return 0;
 }
+
 void Calculator(int digit, char *s1, char *s2)
 {
-    vector<char> result;
-    for(int i = strlen(s1); i >= 0; i--)
-    {
-        for(int j = strlen(s2); j >= 0; j--)
-        {
+    bool negative = false;
+    int n1 = strlen(s1);
+    int n2 = strlen(s2);
+    int num1 = 0, num2 = 0;
+    int index = 0, div = 0, k = 0;
+    int result[BUFF_SIZE + 1] = {0};
+    char s3[BUFF_SIZE + 1] = {0};
 
+    if ((s1[0] == '-' && s2[0] != '-') || (s1[0] != '-' && s2[0] == '-'))
+        negative = true;
+
+    for (int i = n1 - 1; i >= 0; i--)
+    {
+        if (s1[i] == '-')
+            continue;
+        num1 = GetNum(digit, s1[i]);
+
+        for (int j = n2 - 1; j >= 0; j--)
+        {
+            if (s2[i] == '-')
+                continue;
+            num2 = GetNum(digit, s2[j]);
+            k = (BUFF_SIZE - index) - (n2 - 1 - j);
+            result[k] += num1 * num2;
+            div = result[k] / digit;
+            result[k] = result[k] % digit;
+            result[k - 1] += div;
+            s3[k] = GetChar(result[k]);
+            s3[k - 1] = GetChar(result[k - 1]);
         }
+        index++;
+    }
+
+    string s = string(&s3[k - 1], s3 + BUFF_SIZE + 1);
+
+    int r = 0;
+    for(auto i = s.begin(); i != s.end(); i++)
+    {
+        if(*i != '0')
+            break;
+        *i = 0;
+        r++;
+    }
+    s = s.substr(r, s.length() - r);
+    if(s == "")
+        cout << 0 << endl;
+    else
+    {
+        if(negative)
+            cout << "-" ;
+        cout << s << endl;
     }
 }
