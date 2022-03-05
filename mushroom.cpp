@@ -1,63 +1,72 @@
 #include <iostream>
 using namespace std;
 
-int N;//Number of mushrooms
-int P[150000 + 10];//Mushroom value
+int N;              // Number of mushrooms
+int P[150000 + 10]; // Mushroom value
 
-void InputData(){
+void InputData()
+{
 	cin >> N;
-	for (int i = 0; i < N; i++){
+	P[0] = -1;
+	for (int i = 1; i <= N; i++)
+	{
 		cin >> P[i];
 	}
+	P[N + 1] = -1;
 }
 
-int D1[150000 + 10] = {0};
-int D2[150000 + 10] = {0};
-void GetMushroom(int select, int start, int &h, int D[])
+int find_max(int i)
 {
-    // select
-    if(select)
-    {
-        if(h % 2 == 0)
-            D[2*h] = P[start];
-        else
-            D[2*h + 1] -= P[start];
-        GetMushroom(0, start + 1, ++h, D);
-    }
-    else
-    {
-        GetMushroom(1, start, h, D);
-    }
+	if (P[i + 1] >= P[i] && P[i + 1] >= P[i + 2])
+		return P[i + 1];
+	else
+		return -1;
 }
 
-int main(){
+int find_min(int i)
+{
+	if (P[i + 1] <= P[i] && P[i + 1] <= P[i + 2])
+		return P[i + 1];
+	else
+		return -1;
+}
+
+int GetMushroom()
+{
+	int max_val = 0;
+	int pos = 0;
+	for (int i = 0; i < N; i++)
+	{
+		if (pos % 2 == 0)
+		{
+			int max = find_max(i);
+			if (max == -1)
+				continue;
+			max_val += max;
+			pos++;
+		}
+		else
+		{
+			int min = find_min(i);
+			if (min == -1)
+				continue;
+			max_val -= min;
+			pos++;
+		}
+	}
+	return max_val;
+}
+
+int main()
+{
 	int ans = -1;
 
-	InputData();			//	Input function
+	InputData(); //	Input function
 
 	//	Write the code
-	int h1 = 0, h2 = 0;
-    for(int i = 0; i < N; i++)
-    {
-        GetMushroom(0, i, h1, D1);
-        GetMushroom(1, i, h2, D2);
-    }
-	
-	cout << h1 << endl;
-	cout << h2 << endl;
 
-    for(int i = 0; i < N; i++)
-    {
-        cout << D1[i] << " ";
-    }
-    cout << endl;
+	ans = GetMushroom();
 
-    for(int i = 0; i < N*2 + 1; i++)
-    {
-        cout << D2[i] << " ";
-    }
-    cout << endl;
-	
-	cout << ans << endl;	//	Output answer
+	cout << ans << endl; //	Output answer
 	return 0;
 }
