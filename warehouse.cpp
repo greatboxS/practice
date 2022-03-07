@@ -11,7 +11,7 @@ struct Edge
 
 int N, M;
 
-vector<vector<Edge>> edges;
+vector<Edge> edges;
 
 int shortestPath(int s)
 {
@@ -37,14 +37,11 @@ int shortestPath(int s)
 
         P[u] = 1;
 
-        for (auto es : edges)
+        for (auto e : edges)
         {
-            for (auto e : es)
+            if (D[e.v] > (D[e.u] + e.w))
             {
-                if (D[e.v] > (D[e.u] + e.w))
-                {
-                    D[e.v] = D[e.u] + e.w;
-                }
+                D[e.v] = D[e.u] + e.w;
             }
         }
     }
@@ -73,17 +70,15 @@ int main()
         cin >> e1.u >> e1.v >> e1.w;
         e2 = {e1.v, e1.u, e1.w};
 
-        vector<Edge> e;
-        e.push_back(e1);
-        e.push_back(e2);
-        edges.push_back(e);
+        edges.push_back(e1);
+        edges.push_back(e2);
     }
 
     int min = INT_MAX;
-    for(int i = 1; i <= N; i++)
+    for (int i = 1; i <= N; i++)
     {
         int val = shortestPath(i);
-        if(min > val)
+        if (min > val)
             min = val;
     }
     cout << min << endl;
