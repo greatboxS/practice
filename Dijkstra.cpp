@@ -24,14 +24,15 @@ void Dijkstra(int s, int n, vector<vector<Edge>> &edges, vector<int> &D, vector<
 
     int max = INT_MAX;
     int apex = -1;
+    // We have N * N apex of matrix
+    // Loop all the apexs and find the min val of each apex
     for (int i = 0; i < n * n; i++)
     {
         int max = INT_MAX;
         int u = 0;
         for (int j = 0; j < n * n; j++)
         {
-            // Find the first apex
-            // P[j]: the apex is selected,
+            // P[j] == true : the apex is selected,
             if (D[j] < max && P[j] == false)
             {
                 u = j;
